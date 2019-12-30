@@ -1,29 +1,51 @@
-import React, { useContext } from 'react';
-import { StateContext } from '../../../context';
-import { Box, Grid } from '@chakra-ui/core';
-import CheckoutForm from './CheckoutForm/CheckoutForm';
+import React, { useContext } from "react";
+import { StateContext } from "../../../context";
+import { Box, Grid, Heading, Text } from "@chakra-ui/core";
+import CheckoutForm from "./CheckoutForm/CheckoutForm";
+import CartCard from "../../Cards/CartCard";
 
-import './cart.css';
+import "./cart.css";
 
-const Cart = () => {
+const Cart = props => {
   const [{ cart }] = useContext(StateContext);
+  const { fetchArtPieceData } = props;
+
+  const totalPrice = cart.reduce((a, { price }) => a + price, 0);
   // console.log(value);
   // const cartArray = value.cart || [];
   const cartArray = cart || [];
   const cartLi =
-    cartArray.map((item, key) => <li key={key}>{item.title}</li>) || null;
+    cartArray.map((item, key) => <CartCard piece={item} />) || null;
 
   // console.log(value);
   return (
     <>
-      <Grid templateColumns='repeat(2, 1fr)' gap={6} height='100vh'>
-        <Box p={4}>
-          <h1>Your Cart</h1>
-          <ul>{cartLi}</ul>
+      <Grid templateColumns='3fr 1fr' gap={6} height='80vh'>
+        <Box d='flex' p={4}>
+          {!cartArray[0] ? (
+            <Text fontSize='2xl' fontFamily='fira-sans'>
+              Your cart is empty.
+            </Text>
+          ) : (
+            <>
+              {" "}
+              <Heading as='h1' fontSize='2xl' fontFamily='fira-sans'>
+                Your Cart:{" "}
+              </Heading>{" "}
+              <br />
+              {cartLi}
+            </>
+          )}
         </Box>
         <Box p={4}>
-          <h2>Checkout:</h2>
-          <CheckoutForm />
+          {totalPrice === 0 ? (
+            ""
+          ) : (
+            <Text fontSize='2xl' fontFamily='fira-sans'>
+              Cart Total: ${totalPrice}.00
+            </Text>
+          )}
+          <CheckoutForm fetchArtPieceData={fetchArtPieceData} />
         </Box>
       </Grid>
     </>

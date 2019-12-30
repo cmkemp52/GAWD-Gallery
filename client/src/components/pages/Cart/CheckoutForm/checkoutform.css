@@ -1,0 +1,13 @@
+.checkoutForm,
+.btn,
+.btn-primary {
+  background-color: 'gray.600';
+  color: 'gray.50';
+  size: 'lg';
+}
+
+.checkoutForm:hover {
+  background-color: 'gray.200';
+  color: 'gray.900';
+  cursor: 'pointer';
+}

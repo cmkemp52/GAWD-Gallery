@@ -1,20 +1,21 @@
-import React from "react";
-import Moment from "react-moment";
+import React from 'react';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
-import { Box, Image } from "@chakra-ui/core";
+import { Box, Image, Text } from '@chakra-ui/core';
 
 const EventCard = props => {
   const { event } = props;
   return (
     <>
       <Box
-        p={1}
-        width='100%'
-        borderColor='blue'
-        borderStyle='solid'
+        m={3}
+        p={3}
+        width='90%'
         boxShadow='4px 4px 2px 2px grey'
+        backgroundColor='gray.200'
       >
-        <Box d='flex' p={3}>
+        <Box d='flex' p={2}>
           <Box
             width='80px'
             height='80px'
@@ -24,25 +25,26 @@ const EventCard = props => {
             d='flex'
             justifyContent='center'
             alignItems='center'
+            p={2}
             m={2}
           >
-            <h2>
+            <Text fontSize='3xl'>
               <Moment date={event.datewhen} format='MMM D' />
-            </h2>
+            </Text>
           </Box>
-          <h2>{event.title}</h2>      
+          <Text fontSize='3xl'>{event.title}</Text>
         </Box>
         <Box>
-          <Image width='80%' src={event.picture} />
+          <Image width='70%' src={event.picture} />
         </Box>
-        <h3>
-            <Moment date={event.datewhen} format='h: mm A' />
-          </h3>
+        <Text fontSize='2xl'>
+          <Moment date={event.datewhen} format='h:mm a' tz='Europe/London' />
+        </Text>
         <Box>
-          <p>{event.blurb}</p>
+          <Text fontSize='xl'>{event.location}</Text>
         </Box>
         <Box>
-          <p>{event.location}</p>
+          <Text fontSize='lg'>{event.blurb}</Text>
         </Box>
       </Box>
     </>

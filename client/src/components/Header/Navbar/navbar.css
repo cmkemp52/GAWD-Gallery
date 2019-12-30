@@ -1,17 +1,36 @@
 .navList {
   display: flex;
   list-style-type: none;
-  text-decoration: none;
   align-items: center;
   justify-content: space-between;
-  padding-left: 20%;
-  padding-right: 20%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-right: 6rem;
+  margin-left: 6rem;
 }
 
 .navListItem {
-  pad1remding: ;
+  font-family: 'fira-sans', sans-serif;
+  text-decoration: none;
+  font-size: 1.44em;
+  color: #021714;
 }
 
-.navbar {
-  grid-column: 2;
+a.navListItem {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  display: flex;
+  cursor: pointer;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-weight: 500;
+  color: 'gray.400';
+  transition: all 0.2s ease 0s;
+  outline: none;
+}
+
+a.navListItem:hover {
+  transform: scale(1.1);
 }
